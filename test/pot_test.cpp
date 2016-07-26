@@ -15,7 +15,29 @@ BOOST_AUTO_TEST_CASE(PotTest001)
 
 //#:- Default constructor working.
 BOOST_AUTO_TEST_CASE(PotTest002)
-{ auto data = NH_RAW("\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xAA\xBB");
+{ //#:- Construct basic object.
+  auto data = NH_RAW("\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xAA\xBB");
   auto pot = pot_t(data, 12);
-  BOOST_CHECK(compare_memory(data, pot.data(), 12));
-  BOOST_CHECK(compare_memory(data, pot.data(), pot.size())); }
+  //#:-Compare raw input with generated one.
+  BOOST_CHECK(compare_blocks(data, pot.data(),
+              sizeof("\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xAA\xBB")));
+  BOOST_CHECK(compare_blocks(data, pot.data(), pot.size())); }
+
+//#:- set Function
+BOOST_AUTO_TEST_CASE(PotTest003)
+{ //#:- Construct basic object.
+  auto data = NH_RAW("\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xAA\xBB");
+  auto pot = pot_t();
+  //#:- Set object.
+  pot.set(data, sizeof("\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xAA\xBB"));
+  //#:- Compare
+  BOOST_CHECK(compare_blocks(data, pot.data(),
+              sizeof("\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xAA\xBB")));
+  //#:- Fill a pot with 1337 long byte stream.
+  pot.set(1337);
+  //#:- Generate block with 1337 '\x00' bytes.
+  data = generate_block(1337, '\0');
+  //#:- Compare
+  BOOST_CHECK(compare_blocks(data, pot.data(), 1337));
+  //#:- Check if creation of 0-length pot will fail.
+  BOOST_CHECK_THROW(pot.set(0), NH::exception_t); }
