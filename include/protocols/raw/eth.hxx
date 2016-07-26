@@ -1,5 +1,5 @@
-#ifndef _ETH_HXX_
-#define _ETH_HXX_
+#ifndef _NH_ETH_HXX_
+#define _NH_ETH_HXX_
 
 namespace NH
 { namespace Protocols
