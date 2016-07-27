@@ -11,6 +11,7 @@ namespace NH
   using exception_t = catch_me::exception_t<exception_type_t>; }
 
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
-#define ArgumentError(_module_a, _reason_a) throw (exception_t(exception_type_t::ArgumentError, "<%s::%s:[%s:%d]> %s", (_module_a), __FUNCTION__, __FILENAME__, __LINE__, (_reason_a)))
+#define ArgumentError(_module_a, _reason_a) exception_t(exception_type_t::ArgumentError, "<%s::%s:[%s:%d]> %s", (_module_a), __FUNCTION__, __FILENAME__, __LINE__, (_reason_a))
+#define RuntimeError(_module_a, _reason_a) exception_t(exception_type_t::ArgumentError, "<%s::%s:[%s:%d]> %s", (_module_a), __FUNCTION__, __FILENAME__, __LINE__, (_reason_a))
 
 #endif

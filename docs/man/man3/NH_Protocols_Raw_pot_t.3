@@ -1,0 +1,276 @@
+.TH "NH::Protocols::Raw::pot_t" 3 "Wed Jul 27 2016" "nethorn" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NH::Protocols::Raw::pot_t \- 
+.PP
+\fBpot_t\fP Is a class that allows manipulation over raw data\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <pot\&.hxx>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBpot_t\fP () noexcept"
+.br
+.RI "\fIDefault constructor\&. \fP"
+.ti -1c
+.RI "\fBpot_t\fP (const uint8_t *_data_a, uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fINon-default constructor\&. \fP"
+.ti -1c
+.RI "\fBpot_t\fP (uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fINon-default constructor\&. \fP"
+.ti -1c
+.RI "\fBpot_t\fP (const \fBpot_t\fP &_pot_a) noexcept"
+.br
+.RI "\fICopy constructor\&. \fP"
+.ti -1c
+.RI "\fBpot_t\fP (\fBpot_t\fP &&_pot_a) noexcept"
+.br
+.RI "\fIMove constructor\&. \fP"
+.ti -1c
+.RI "\fB~pot_t\fP () noexcept"
+.br
+.RI "\fIDestructor\&. \fP"
+.ti -1c
+.RI "const \fBpot_t\fP & \fBoperator=\fP (const \fBpot_t\fP &_pot_a) noexcept"
+.br
+.RI "\fIAssign operator\&. \fP"
+.ti -1c
+.RI "const \fBpot_t\fP & \fBoperator=\fP (\fBpot_t\fP &&_pot_a) noexcept"
+.br
+.RI "\fIMove operator\&. \fP"
+.ti -1c
+.RI "uint32_t \fBset\fP (const uint8_t *_data_a, uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fISets the new content into the pot\&. \fP"
+.ti -1c
+.RI "uint32_t \fBset\fP (uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fISets the new content into the pot\&. \fP"
+.ti -1c
+.RI "uint32_t \fBextend\fP (const uint8_t *_data_a, uint32_t _size_a, uint32_t _offset_a)  throw (exception_t)"
+.br
+.RI "\fIExtends pot size\&. \fP"
+.ti -1c
+.RI "uint32_t \fBextend_by\fP (const uint8_t *_data_a, uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fIExtends pot size\&. \fP"
+.ti -1c
+.RI "uint32_t \fBextend_by\fP (uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fIExtends pot size\&. \fP"
+.ti -1c
+.RI "uint32_t \fBshrink_by\fP (uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fIShirnks pot size\&. \fP"
+.ti -1c
+.RI "uint32_t \fBshrink_to\fP (uint32_t _size_a)  throw (exception_t)"
+.br
+.RI "\fIShirnks pot size\&. \fP"
+.ti -1c
+.RI "uint32_t \fBclear\fP () noexcept"
+.br
+.RI "\fIClears a pot\&. \fP"
+.ti -1c
+.RI "const uint8_t * \fBdata\fP () const noexcept"
+.br
+.RI "\fIReturns pot\&. \fP"
+.ti -1c
+.RI "uint8_t \fBoperator[]\fP (int32_t _index_a) const   throw (exception_t)"
+.br
+.RI "\fIAccesses pot by \fC_index_a\fP index\&. \fP"
+.ti -1c
+.RI "uint8_t & \fBoperator[]\fP (int32_t _index_a)  throw (exception_t)"
+.br
+.RI "\fIAccesses pot by \fC_index_a\fP index\&. \fP"
+.ti -1c
+.RI "uint32_t \fBsize\fP () const noexcept"
+.br
+.RI "\fIReturns size of pot\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBpot_t\fP Is a class that allows manipulation over raw data\&. 
+
+It is used to help crafting raw packets\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "NH::Protocols::Raw::pot_t::pot_t ()\fC [noexcept]\fP"
+
+.PP
+Default constructor\&. Initializes class members with default values\&. 
+.SS "NH::Protocols::Raw::pot_t::pot_t (const uint8_t *_data_a, uint32_t_size_a)exception_t"
+
+.PP
+Non-default constructor\&. Constructs object with given length \fC_size_a\fP and fills it with \fC_data_a\fP 
+.SS "NH::Protocols::Raw::pot_t::pot_t (uint32_t_size_a)exception_t"
+
+.PP
+Non-default constructor\&. Constructs object with given length \fC_size_a\fP and fills it with zeros\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "uint32_t NH::Protocols::Raw::pot_t::clear ()\fC [noexcept]\fP"
+
+.PP
+Clears a pot\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "const uint8_t * NH::Protocols::Raw::pot_t::data () const\fC [noexcept]\fP"
+
+.PP
+Returns pot\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to held data\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::extend (const uint8_t *_data_a, uint32_t_size_a, uint32_t_offset_a)exception_t"
+
+.PP
+Extends pot size\&. Extends pot by \fC_size_a\fP size, filling new space with \fC_data_a\fP at \fC_offset_a\fP offset\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::extend_by (const uint8_t *_data_a, uint32_t_size_a)exception_t"
+
+.PP
+Extends pot size\&. Extends pot by \fC_size_a\fP size, filling new space with \fC_data_a\fP\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::extend_by (uint32_t_size_a)exception_t"
+
+.PP
+Extends pot size\&. Extends pot by \fC_size_a\fP size, filling new space with  bytes\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "const \fBpot_t\fP & NH::Protocols::Raw::pot_t::operator= (const \fBpot_t\fP &_pot_a)\fC [noexcept]\fP"
+
+.PP
+Assign operator\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Copy of \fC_pot_a\fP\&. 
+.RE
+.PP
+
+.SS "const \fBpot_t\fP & NH::Protocols::Raw::pot_t::operator= (\fBpot_t\fP &&_pot_a)\fC [noexcept]\fP"
+
+.PP
+Move operator\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Copy of \fC_pot_a\fP\&. 
+.RE
+.PP
+
+.SS "uint8_t NH::Protocols::Raw::pot_t::operator[] (int32_t_index_a) constexception_t"
+
+.PP
+Accesses pot by \fC_index_a\fP index\&. Index value can be negative\&. In such case, pot will be accessed in reverse\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Byte from pot at given index\&. 
+.RE
+.PP
+
+.SS "uint8_t & NH::Protocols::Raw::pot_t::operator[] (int32_t_index_a)exception_t"
+
+.PP
+Accesses pot by \fC_index_a\fP index\&. Index value can be negative\&. In such case, pot will be accessed in reverse\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Reference to byte from pot at given index\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::set (const uint8_t *_data_a, uint32_t_size_a)exception_t"
+
+.PP
+Sets the new content into the pot\&. Sets pot with \fC_size_a\fP long size and fills it with \fC_data_a\fP data\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::set (uint32_t_size_a)exception_t"
+
+.PP
+Sets the new content into the pot\&. Sets pot with \fC_size_a\fP long size and fills it with \fC_data_a\fP data\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::shrink_by (uint32_t_size_a)exception_t"
+
+.PP
+Shirnks pot size\&. Shirnks pot by \fC_size_a\fP size\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::shrink_to (uint32_t_size_a)exception_t"
+
+.PP
+Shirnks pot size\&. Shirnks pot to \fC_size_a\fP size\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+.SS "uint32_t NH::Protocols::Raw::pot_t::size () const\fC [noexcept]\fP"
+
+.PP
+Returns size of pot\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Size of pot\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for nethorn from the source code\&.
