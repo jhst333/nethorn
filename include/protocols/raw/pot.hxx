@@ -59,13 +59,14 @@ namespace NH
           * Extends pot by \p _size_a size, filling new space with \p _data_a
           * at \p _offset_a offset.
           * \returns Size of pot. */
-         uint32_t extend(const uint8_t* _data_a, uint32_t _size_a,
-                         uint32_t _offset_a) throw (exception_t);
+         uint32_t extend_at(const uint8_t* _data_a, uint32_t _size_a,
+                            uint32_t _offset_a) throw (exception_t);
          /*! \brief Extends pot size.
           *
           * Extends pot by \p _size_a size, filling new space with \p _data_a.
           * \returns Size of pot. */
-         uint32_t extend_by(const uint8_t* _data_a, uint32_t _size_a) throw (exception_t);
+         uint32_t extend_by(const uint8_t* _data_a, uint32_t _size_a)
+                            throw (exception_t);
          /*! \brief Extends pot size.
           *
           * Extends pot by \p _size_a size, filling new space with \x00 bytes.

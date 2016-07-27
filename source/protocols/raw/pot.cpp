@@ -105,8 +105,8 @@ namespace NH
         std::memset(data_m, '\0', size_m);
         return size_m; }
 
-      uint32_t pot_t::extend(const uint8_t* _data_a, uint32_t _size_a,
-                             uint32_t _offset_a) throw (exception_t)
+      uint32_t pot_t::extend_at(const uint8_t* _data_a, uint32_t _size_a,
+                                uint32_t _offset_a) throw (exception_t)
       { //#:- Check parameters.
         if (!_data_a) throw (ArgumentError("NH::Protocols::Raw", "Null pointer"));
         if (!_size_a) throw (ArgumentError("NH::Protocols::Raw", "Invalid size"));
@@ -138,6 +138,10 @@ namespace NH
         data_m = new_data;
         size_m += _size_a;
         return size_m; }
+
+      uint32_t pot_t::extend_by(const uint8_t* _data_a,
+                                uint32_t _size_a) throw (exception_t)
+      { return extend_at(_data_a, _size_a, size()); }
 
       uint32_t pot_t::extend_by(uint32_t _size_a) throw (exception_t)
       { //#:- Check parameter.
