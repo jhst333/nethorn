@@ -48,7 +48,7 @@ namespace NH
         _pot_a.data_m = nullptr;
         _pot_a.size_m = 0; }
 
-      pot_t::~pot_t()
+      pot_t::~pot_t() noexcept
       { //#:- Free a memory block.
         if (data_m) { delete [] data_m; data_m = nullptr; }
         size_m = 0; }
@@ -166,7 +166,7 @@ namespace NH
       { //#:- Check parameter.
         if (!_size_a) throw (ArgumentError("NH::Protocols::Raw", "Invalid size"));
         if (!data_m) throw (ArgumentError("NH::Protocols::Raw", "Nothing to shrink"));
-        if (size_m - _size_a > size_m)
+        if (_size_a == size_m || size_m - _size_a >= size_m)
          throw (ArgumentError("NH::Protocols::Raw", "Unable to shrink"));
         //#:- Create shrinked pot.
         size_m = size_m - _size_a;
