@@ -7,6 +7,7 @@
  find_package(Boost COMPONENTS unit_test_framework)
 #//: libnethorn.so [RELEASE]
  add_library                (nethorn source/protocols/raw/pot.cpp
+                                     source/protocols/raw/eth.cpp
                                      source/helpers.cpp)
  target_include_directories (nethorn PUBLIC include/)
  target_compile_options     (nethorn PUBLIC -Wall -Wextra -pedantic -std=c++11
@@ -18,9 +19,9 @@ if (Boost_UNIT_TEST_FRAMEWORK_LIBRARY)
                                            source/helpers.cpp)
  target_include_directories (nethorn_debug PUBLIC include/)
  target_compile_options     (nethorn_debug PUBLIC -Wall -Wextra -pedantic -std=c++11
-                                                  -fPIC -g -O0)
+                                                  -fPIC -g -O0 -DNH_TEST)
  #//: pot_test [DEBUG]
- add_executable             (_test_pot test/pot_test.cpp source/helpers.cpp)
+ add_executable             (_test_pot test/_test_pot.cpp source/helpers.cpp)
  target_include_directories (_test_pot PUBLIC include/)
  target_compile_options     (_test_pot PUBLIC -Wall -Wextra -pedantic -std=c++11
                                               -O0 -g -DNH_TEST)

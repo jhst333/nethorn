@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#include "../../exception.hxx"
+#include "exception.hxx"
 
 namespace NH
 { namespace Protocols
@@ -33,7 +33,7 @@ namespace NH
          /*! \brief Move constructor. */
          pot_t(pot_t&& _pot_a) noexcept;
          /*! \brief Destructor */
-         ~pot_t() noexcept;
+         virtual ~pot_t() noexcept;
          //#:- Copying
          /*! \brief Assign operator
           * \returns Copy of \p _pot_a. */
@@ -41,6 +41,11 @@ namespace NH
          /*! \brief Move operator
           * \returns Copy of \p _pot_a. */
          const pot_t& operator=(pot_t&& _pot_a) noexcept;
+        //#:- In case we're compiling tests and debug version.
+        #ifndef NH_TEST
+         //#:- There is really no purpose to put these methods in public access.
+         protected:
+        #endif
          //#:- Memory manipulation
          /*! \brief Sets the new content into the pot.
           *
@@ -82,10 +87,22 @@ namespace NH
           * Shirnks pot to \p _size_a size.
           * \returns Size of pot. */
          uint32_t shrink_to(uint32_t _size_a) throw (exception_t);
+         /*! \brief Writes data to pot.
+          *
+          * Writes \p _data_a at \p _offset_a offset with \p _size_a size.
+          * \returns Size of pot. */
+         uint32_t write(const uint8_t* _data_a, uint32_t _size_a,
+                        uint32_t _offset_a) throw (exception_t);
          /*! \brief Clears a pot.
           * \returns Size of pot. */
          uint32_t clear() noexcept;
          //#:- Memory access
+         /*! \brief Reads data from pot.
+          *
+          * Reads data from pot at \p _offset_a offset with \p _size_a size.
+          * \returns Pointer to copied data from pot. */
+         uint8_t* read(uint32_t _size_a, uint32_t _offset_a) const throw (exception_t);
+        public:
          /*! \brief Returns pot.
           * \returns Pointer to held data. */
          const uint8_t* data() const noexcept;
