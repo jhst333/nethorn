@@ -1,0 +1,294 @@
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{\section{N\+H\+:\+:Protocols\+:\+:Raw\+:\+:ethernet\+\_\+t Class Reference}
+\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+}
+
+
+\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} Is a class that helps generating ethernet frames.  
+
+
+
+
+{\ttfamily \#include $<$eth.\+hxx$>$}
+
+Inheritance diagram for N\+H\+:\+:Protocols\+:\+:Raw\+:\+:ethernet\+\_\+t\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ab1f6a4573a7109c43844b6d973982530}{{\bfseries ethernet\+\_\+t} (const uint8\+\_\+t $\ast$\+\_\+data\+\_\+a, uint32\+\_\+t \+\_\+size\+\_\+a)  throw (exception\+\_\+t)}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ab1f6a4573a7109c43844b6d973982530}
+
+\item 
+\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_aae968740cdec40877eaf40ac1ee38f46}{ethernet\+\_\+t} (const \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} \&\+\_\+ethernet\+\_\+a) noexcept
+\begin{DoxyCompactList}\small\item\em Default copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ac8f8390dc2b6c9e6c505e3b47cab1391}{ethernet\+\_\+t} (\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} \&\&\+\_\+ethernet\+\_\+a) noexcept
+\begin{DoxyCompactList}\small\item\em Default move constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a89f7515792e7284e30116a36b384204c}{$\sim$ethernet\+\_\+t} () noexcept
+\begin{DoxyCompactList}\small\item\em Default Destructor. \end{DoxyCompactList}\item 
+const \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} \& \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a9ed452b1a988282fc1493651f64c25d6}{operator=} (const \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} \&\+\_\+ethernet\+\_\+a) noexcept
+\item 
+const \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} \& \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a676007a7bf05fd45b18c65264e9871c0}{operator=} (\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} \&\&\+\_\+ethernet\+\_\+a) noexcept
+\item 
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ae1e8a0c3f497b5e83ac7f8ea8718a385}{void {\bfseries destination\+\_\+mac} (const std\+::string \&\+\_\+mac\+\_\+a)  throw (exception\+\_\+t)}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ae1e8a0c3f497b5e83ac7f8ea8718a385}
+
+\item 
+std\+::string \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a0c8db6cceb97f4e5be350b1b2324fec3}{destination\+\_\+mac} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets destination M\+A\+C address. \end{DoxyCompactList}\item 
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a8aacb20928bf38d8c3ac8700c9adfd8f}{void {\bfseries source\+\_\+mac} (const std\+::string \&\+\_\+mac\+\_\+a)  throw (exception\+\_\+t)}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a8aacb20928bf38d8c3ac8700c9adfd8f}
+
+\item 
+std\+::string \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a94f64400f2faa1e2835c42a4aa71c4da}{source\+\_\+mac} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets source M\+A\+C address. \end{DoxyCompactList}\item 
+void \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ac186b4b3cb148f984ffb750d6a28a4fe}{ethertype} (uint16\+\_\+t \+\_\+type\+\_\+a) noexcept
+\begin{DoxyCompactList}\small\item\em Sets E\+T\+H\+E\+R\+T\+Y\+P\+E. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a9c63dca6aabee027e34ef32b5c2590c3}{ethertype} () const noexcept
+\begin{DoxyCompactList}\small\item\em Gets E\+T\+H\+E\+R\+T\+Y\+P\+E. \end{DoxyCompactList}\item 
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a617d8893bd66ab306e6a4120f90ba40e}{void {\bfseries extension\+\_\+802\+\_\+1q} (bool \+\_\+activate\+\_\+a)  throw (exception\+\_\+t)}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a617d8893bd66ab306e6a4120f90ba40e}
+
+\item 
+bool \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a410928becc81554c8de89b369ea51cdf}{extension\+\_\+802\+\_\+1q} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the state of 802.\+1\+Q activation flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a77b77348cbc3de9b6d7787e14c3fe77f}{static bool {\bfseries is\+\_\+mac} (const std\+::string \&\+\_\+mac\+\_\+a) noexcept}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a77b77348cbc3de9b6d7787e14c3fe77f}
+
+\item 
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a54278f10d6f9b167c906f2324ef65a88}{{\footnotesize template$<$typename... layers\+\_\+t$>$ }\\static uint32\+\_\+t {\bfseries calculate\+\_\+checksum} (\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1pot__t}{pot\+\_\+t} \+\_\+layer\+\_\+a, layers\+\_\+t...\+\_\+layers\+\_\+a)}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a54278f10d6f9b167c906f2324ef65a88}
+
+\item 
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ab3b5d70113f0b835b0e5b3914935afb0}{static boost\+::crc\+\_\+32\+\_\+type {\bfseries calculate\+\_\+checksum} (\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1pot__t}{pot\+\_\+t} \+\_\+layer\+\_\+a) noexcept}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ab3b5d70113f0b835b0e5b3914935afb0}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t}{ethernet\+\_\+t} Is a class that helps generating ethernet frames. 
+
+This class allows manipulating ethernet frame by providing additional layer of abstraction over \hyperlink{class_n_h_1_1_protocols_1_1_raw_1_1pot__t}{pot\+\_\+t} class. You can manipulate ethernet frame by using variety of methods and even access raw data stream. 
+
+Definition at line 22 of file eth.\+hxx.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_aae968740cdec40877eaf40ac1ee38f46}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!ethernet\+\_\+t@{ethernet\+\_\+t}}
+\index{ethernet\+\_\+t@{ethernet\+\_\+t}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{ethernet\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}ethernet\+\_\+t\+::ethernet\+\_\+t (
+\begin{DoxyParamCaption}
+\item[{const {\bf ethernet\+\_\+t} \&}]{\+\_\+ethernet\+\_\+a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_aae968740cdec40877eaf40ac1ee38f46}
+
+
+Default copy constructor. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 24 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ac8f8390dc2b6c9e6c505e3b47cab1391}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!ethernet\+\_\+t@{ethernet\+\_\+t}}
+\index{ethernet\+\_\+t@{ethernet\+\_\+t}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{ethernet\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}ethernet\+\_\+t\+::ethernet\+\_\+t (
+\begin{DoxyParamCaption}
+\item[{{\bf ethernet\+\_\+t} \&\&}]{\+\_\+ethernet\+\_\+a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ac8f8390dc2b6c9e6c505e3b47cab1391}
+
+
+Default move constructor. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 28 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a89f7515792e7284e30116a36b384204c}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!````~ethernet\+\_\+t@{$\sim$ethernet\+\_\+t}}
+\index{````~ethernet\+\_\+t@{$\sim$ethernet\+\_\+t}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{$\sim$ethernet\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}ethernet\+\_\+t\+::$\sim$ethernet\+\_\+t (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a89f7515792e7284e30116a36b384204c}
+
+
+Default Destructor. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 32 of file eth.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a0c8db6cceb97f4e5be350b1b2324fec3}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!destination\+\_\+mac@{destination\+\_\+mac}}
+\index{destination\+\_\+mac@{destination\+\_\+mac}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{destination\+\_\+mac}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string ethernet\+\_\+t\+::destination\+\_\+mac (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a0c8db6cceb97f4e5be350b1b2324fec3}
+
+
+Gets destination M\+A\+C address. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+String with destination M\+A\+C address. (Six groups of two hexadecimal digits separated by colons.) 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ac186b4b3cb148f984ffb750d6a28a4fe}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!ethertype@{ethertype}}
+\index{ethertype@{ethertype}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{ethertype}]{\setlength{\rightskip}{0pt plus 5cm}void ethernet\+\_\+t\+::ethertype (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{\+\_\+type\+\_\+a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_ac186b4b3cb148f984ffb750d6a28a4fe}
+
+
+Sets E\+T\+H\+E\+R\+T\+Y\+P\+E. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+Nothing. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a9c63dca6aabee027e34ef32b5c2590c3}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!ethertype@{ethertype}}
+\index{ethertype@{ethertype}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{ethertype}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t ethernet\+\_\+t\+::ethertype (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a9c63dca6aabee027e34ef32b5c2590c3}
+
+
+Gets E\+T\+H\+E\+R\+T\+Y\+P\+E. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+E\+T\+H\+E\+R\+T\+Y\+P\+E value. 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a410928becc81554c8de89b369ea51cdf}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!extension\+\_\+802\+\_\+1q@{extension\+\_\+802\+\_\+1q}}
+\index{extension\+\_\+802\+\_\+1q@{extension\+\_\+802\+\_\+1q}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{extension\+\_\+802\+\_\+1q}]{\setlength{\rightskip}{0pt plus 5cm}bool ethernet\+\_\+t\+::extension\+\_\+802\+\_\+1q (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a410928becc81554c8de89b369ea51cdf}
+
+
+Returns the state of 802.\+1\+Q activation flag. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+True if 802.\+1\+Q extension is activated, False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 120 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a9ed452b1a988282fc1493651f64c25d6}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!operator=@{operator=}}
+\index{operator=@{operator=}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf ethernet\+\_\+t} \& ethernet\+\_\+t\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf ethernet\+\_\+t} \&}]{\+\_\+ethernet\+\_\+a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a9ed452b1a988282fc1493651f64c25d6}
+Copy assign operator. 
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 35 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a676007a7bf05fd45b18c65264e9871c0}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!operator=@{operator=}}
+\index{operator=@{operator=}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf ethernet\+\_\+t} \& ethernet\+\_\+t\+::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf ethernet\+\_\+t} \&\&}]{\+\_\+ethernet\+\_\+a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a676007a7bf05fd45b18c65264e9871c0}
+Move assign operator. 
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 43 of file eth.\+cpp.
+
+\hypertarget{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a94f64400f2faa1e2835c42a4aa71c4da}{\index{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}!source\+\_\+mac@{source\+\_\+mac}}
+\index{source\+\_\+mac@{source\+\_\+mac}!N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t@{N\+H\+::\+Protocols\+::\+Raw\+::ethernet\+\_\+t}}
+\subsubsection[{source\+\_\+mac}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string ethernet\+\_\+t\+::source\+\_\+mac (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [noexcept]}}}\label{class_n_h_1_1_protocols_1_1_raw_1_1ethernet__t_a94f64400f2faa1e2835c42a4aa71c4da}
+
+
+Gets source M\+A\+C address. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing.} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+String with source M\+A\+C address. (Six groups of two hexadecimal digits separated by colons.) 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file eth.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/protocols/raw/eth.\+hxx\item 
+source/protocols/raw/eth.\+cpp\end{DoxyCompactItemize}
