@@ -7,7 +7,7 @@ namespace NH
   { namespace Raw
     { ethernet_t::ethernet_t() noexcept
                  :pot_t(19)
-      { tag_m = false; }
+      { extension_802_1q_m = false; }
 
       ethernet_t::ethernet_t(const uint8_t* _data_a, uint32_t _size_a) throw (exception_t)
                  :pot_t()
@@ -16,22 +16,18 @@ namespace NH
         //#:- 802.1Q TAG extension.
         //#:- Destination MAC + Source MAC + TAG + Ethertype.
         else if (_size_a == 19)
-        { tag_m = true;
-          throw (ArgumentError("NH::Protocols::Raw", "Unsupported 802.1Q TAG"));
-
-        }
+        { extension_802_1q_m = true;
+          pot_t(_data_a, _size_a); }
         //#:- Malformed frame.
-        else throw (ArgumentError("NH::Protocols::Raw", "Malformed frame."));
-
-      }
+        else throw (ArgumentError("NH::Protocols::Raw", "Malformed frame.")); }
 
       ethernet_t::ethernet_t(const ethernet_t& _ethernet_a) noexcept
                  :pot_t(static_cast<const pot_t&>(_ethernet_a))
-      { tag_m = _ethernet_a.tag_m; }
+      { extension_802_1q_m = _ethernet_a.extension_802_1q_m; }
 
       ethernet_t::ethernet_t(ethernet_t&& _ethernet_a) noexcept
                  :pot_t(static_cast<pot_t&&>(_ethernet_a))
-      { tag_m = _ethernet_a.tag_m; }
+      { extension_802_1q_m = _ethernet_a.extension_802_1q_m; }
 
       ethernet_t::~ethernet_t() noexcept
       { ; }
@@ -41,7 +37,7 @@ namespace NH
         if (&_ethernet_a == this) return (*this);
         //#:- Use pot_t assign operator.
         pot_t::operator=(_ethernet_a);
-        tag_m = _ethernet_a.tag_m;
+        extension_802_1q_m = _ethernet_a.extension_802_1q_m;
         return (*this); }
 
       const ethernet_t& ethernet_t::operator=(ethernet_t&& _ethernet_a) noexcept
@@ -49,8 +45,24 @@ namespace NH
         if (&_ethernet_a == this) return (*this);
         //#:- Use pot_t assign operator.
         pot_t::operator=(_ethernet_a);
-        tag_m = _ethernet_a.tag_m;
+        extension_802_1q_m = _ethernet_a.extension_802_1q_m;
         return (*this); }
+
+      void ethernet_t::destination_mac(const std::string& _mac_a) throw (exception_t)
+      { //#:- Check if _mac_a is NOT MAC address.
+        if (!is_mac(_mac_a)) throw (ArgumentError("NH::Protocols::Raw", "Invalid MAC address"));
+        //#:- Get bytes from MAC.
+        std::unique_ptr<uint8_t[]> bytes(ethernet_t::get_bytes_from_mac(_mac_a));
+        if (!bytes) throw (ArgumentError("NH::Protocols::Raw", "Invalid MAC address"));
+        //#:- Write to pot.
+        pot_t::write(bytes.get(), MAC_LENGTH, MAC_DESTINATION_START); }
+
+      std::string ethernet_t::destination_mac() const noexcept
+      { //#:- Read raw MAC.
+        std::unique_ptr<uint8_t[]> mac_raw(pot_t::read(MAC_LENGTH,
+                                                       MAC_DESTINATION_START));
+        //#:- Convert it to string.
+        return ethernet_t::get_mac_from_bytes(mac_raw); }
 
       void ethernet_t::source_mac(const std::string& _mac_a) throw (exception_t)
       { //#:- Check if _mac_a is NOT MAC address.
@@ -68,21 +80,45 @@ namespace NH
         //#:- Convert it to string.
         return ethernet_t::get_mac_from_bytes(mac_raw); }
 
-      void ethernet_t::destination_mac(const std::string& _mac_a) throw (exception_t)
-      { //#:- Check if _mac_a is NOT MAC address.
-        if (!is_mac(_mac_a)) throw (ArgumentError("NH::Protocols::Raw", "Invalid MAC address"));
-        //#:- Get bytes from MAC.
-        std::unique_ptr<uint8_t[]> bytes(ethernet_t::get_bytes_from_mac(_mac_a));
-        if (!bytes) throw (ArgumentError("NH::Protocols::Raw", "Invalid MAC address"));
-        //#:- Write to pot.
-        pot_t::write(bytes.get(), MAC_LENGTH, MAC_DESTINATION_START); }
+      void ethernet_t::ethertype(uint16_t _type_a) noexcept
+      { //#:- If 802.1Q TAG extension is present,
+        //#:- ETHERTYPE is moved by 4 bytes futher.
+        uint32_t offset = 0;
+        if (extension_802_1q_m) offset = 4;
+        //#:- Swap bytes and write into pot.
+        uint16_t type = Helpers::swap_byte_order(_type_a);
+        pot_t::write(&type, ETHERTYPE_SIZE, ETHERTYPE_START + offset); }
 
-      std::string ethernet_t::destination_mac() const noexcept
-      { //#:- Read raw MAC.
-        std::unique_ptr<uint8_t[]> mac_raw(pot_t::read(MAC_LENGTH,
-                                                       MAC_DESTINATION_START));
-        //#:- Convert it to string.
-        return ethernet_t::get_mac_from_bytes(mac_raw); }
+      uint16_t ethernet_t::ethertype() const noexcept
+      { //#:- If 802.1Q TAG extension is present,
+        //#:- ETHERTYPE is moved by 4 bytes futher.
+        uint32_t offset = 0;
+        if (extension_802_1q_m) offset = 4;
+        //#:- Read ETHERTYPE.
+        std::unique_ptr<uint8_t[]> bytes(pot_t::read(ETHERTYPE_SIZE,
+                                                     ETHERTYPE_START + offset));
+        //#:- Cast it into uint16_t, change byte order and return.
+        return Helpers::swap_byte_order(*reinterpret_cast<uint16_t*>(bytes.get())); }
+
+      void ethernet_t::extension_802_1q(bool _activate_a) throw (exception_t)
+      { //#:- Do we want to activate this extension?
+        if (_activate_a)
+        { //#:- Check if extension is active.
+          if (extension_802_1q_m)
+           throw (ArgumentError("NH::Protocols::Raw", "Extension 802.1Q is already active."));
+          //#:- Extend pot and write tag into new space.
+          pot_t::extend_at(NH_RAW("\x81\x00\x00\x00"), TAG_SIZE, TAG_START);
+          extension_802_1q_m = true; }
+        else
+        { //#:- Check if extension is not activate yet.
+          if (!extension_802_1q_m)
+           throw (ArgumentError("NH::Protocols::Raw", "Extension 802.1Q is not active."));
+          //#:- Remove tag.
+          pot_t::erase(TAG_SIZE, TAG_START);
+          extension_802_1q_m = false; } }
+
+      bool ethernet_t::extension_802_1q() const noexcept
+      { return extension_802_1q_m; }
 
       bool ethernet_t::is_mac(const std::string& _mac_a) noexcept
       { //#:- Acceptable notations are: 00-11-22-33-44-55-66 or

@@ -24,6 +24,34 @@ namespace NH
        return data; }
     #endif
 
+    uint16_t swap_byte_order(uint16_t _value_a) noexcept
+    { //#:- Swap bytes order
+      uint16_t swapped = 0;
+      swapped |= (_value_a & 0xFF00) >> 8;
+      swapped |= (_value_a & 0x00FF) << 8;
+      return swapped; }
+
+    uint32_t swap_byte_order(uint32_t _value_a) noexcept
+    { //#:- Swap bytes order
+      uint32_t swapped = 0;
+      swapped |= (_value_a & 0xFF000000) >> 24;
+      swapped |= (_value_a & 0x00FF0000) >> 8;
+      swapped |= (_value_a & 0x0000FF00) << 8;
+      swapped |= (_value_a & 0x000000FF) << 24;
+      return swapped; }
+
+    uint64_t swap_byte_order(uint64_t _value_a) noexcept
+    { //#:- Swap bytes order
+      uint64_t swapped = 0;
+      swapped |= (_value_a & 0xFF00000000000000) >> 56;
+      swapped |= (_value_a & 0x00FF000000000000) >> 40;
+      swapped |= (_value_a & 0x0000FF0000000000) >> 24;
+      swapped |= (_value_a & 0x000000FF00000000) >> 8;
+      swapped |= (_value_a & 0x00000000FF000000) << 8;
+      swapped |= (_value_a & 0x0000000000FF0000) << 24;
+      swapped |= (_value_a & 0x000000000000FF00) << 40;
+      swapped |= (_value_a & 0x00000000000000FF) << 56;
+      return swapped; }
   }
 
 }

@@ -87,11 +87,19 @@ namespace NH
           * Shirnks pot to \p _size_a size.
           * \returns Size of pot. */
          uint32_t shrink_to(uint32_t _size_a) throw (exception_t);
+         /*! \brief Erases given pot region.
+          *
+          * Erases region at \p _offset_a offset with \p _size_a size.
+          * \throw \class exception_t If:
+          * - Parameters are invalid;
+          * - Region is bigger than pot;
+          * \return Size of pot after erase operation. */
+         uint32_t erase(uint32_t _size_a, uint32_t _offset_a) throw (exception_t);
          /*! \brief Writes data to pot.
           *
           * Writes \p _data_a at \p _offset_a offset with \p _size_a size.
           * \returns Size of pot. */
-         uint32_t write(const uint8_t* _data_a, uint32_t _size_a,
+         uint32_t write(const void* _data_a, uint32_t _size_a,
                         uint32_t _offset_a) throw (exception_t);
          /*! \brief Clears a pot.
           * \returns Size of pot. */

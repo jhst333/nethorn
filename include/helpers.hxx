@@ -24,6 +24,10 @@ namespace NH
       * \returns Pointer to memory block. */
      uint8_t* generate_block(uint32_t _size_a, uint8_t _byte_a) throw (exception_t);
     #endif
+
+    uint16_t swap_byte_order(uint16_t _value_a) noexcept;
+    uint32_t swap_byte_order(uint32_t _value_a) noexcept;
+    uint64_t swap_byte_order(uint64_t _value_a) noexcept;
   }
 }
 
