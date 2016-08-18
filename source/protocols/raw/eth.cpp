@@ -107,18 +107,99 @@ namespace NH
           if (extension_802_1q_m)
            throw (ArgumentError("NH::Protocols::Raw", "Extension 802.1Q is already active."));
           //#:- Extend pot and write tag into new space.
-          pot_t::extend_at(NH_RAW("\x81\x00\x00\x00"), TAG_SIZE, TAG_START);
+          pot_t::extend_at(NH_RAW("\x81\x00\x00\x00"), EXTENSION_802_1Q_SIZE, EXTENSION_802_1Q_START);
           extension_802_1q_m = true; }
         else
         { //#:- Check if extension is not activate yet.
           if (!extension_802_1q_m)
            throw (ArgumentError("NH::Protocols::Raw", "Extension 802.1Q is not active."));
           //#:- Remove tag.
-          pot_t::erase(TAG_SIZE, TAG_START);
+          pot_t::erase(EXTENSION_802_1Q_SIZE, EXTENSION_802_1Q_START);
           extension_802_1q_m = false; } }
 
       bool ethernet_t::extension_802_1q() const noexcept
       { return extension_802_1q_m; }
+
+      void ethernet_t::extension_802_1q_pcp(uint8_t _pcp_a) throw (exception_t)
+      { //#:- Check if extension is enabled.
+        if (!extension_802_1q_m)
+         throw (RuntimeError("NH::Protocols::Raw",
+                             "802.1Q extension is not enabled."));
+        //#:- Read 802.1Q extension header.
+        std::unique_ptr<uint8_t[]> extension_header(pot_t::read(EXTENSION_802_1Q_SIZE,
+                                                                EXTENSION_802_1Q_START));
+        //#:- Interpret it as uint32_t.
+        uint32_t header = (*TO_UINT32_T(extension_header.get()));
+        //#:- Set PCP.
+        header |= (static_cast<uint32_t>(_pcp_a) << 13);
+        //#:- Write header back into pot.
+        pot_t::write(NH_RAW(&header), EXTENSION_802_1Q_SIZE,
+                                      EXTENSION_802_1Q_START); }
+
+      uint8_t ethernet_t::extension_802_1q_pcp() const throw (exception_t)
+      { //#:- Check if extension is enabled.
+        if (!extension_802_1q_m)
+         throw (RuntimeError("NH::Protocols::Raw", "802.1Q extension is not enabled."));
+        //#:- Read 802.1Q extension header.
+        std::unique_ptr<uint8_t[]> extension_header(pot_t::read(EXTENSION_802_1Q_SIZE,
+                                                                EXTENSION_802_1Q_START));
+        //#:- Interpret it as uint32_t and extract 3-bit field..
+        uint32_t header = (*TO_UINT32_T(extension_header.get()));
+        uint8_t pcp = (header >> 13);
+        return pcp; }
+
+      void ethernet_t::extension_802_1q_dei(bool _dei_a) throw (exception_t)
+      { //#:- Check if extension is enabled.
+        if (!extension_802_1q_m)
+         throw (RuntimeError("NH::Protocols::Raw", "802.1Q extension is not enabled."));
+        //#:- Read 802.1Q extension header.
+        std::unique_ptr<uint8_t[]> extension_header(pot_t::read(EXTENSION_802_1Q_SIZE,
+                                                                EXTENSION_802_1Q_START));
+        //#:- Interpret it as uint32_t.
+        uint32_t header = (*TO_UINT32_T(extension_header.get()));
+        //#:- Set DEI.
+        uint8_t dei = (_dei_a ? 1 : 0);
+        header |= (static_cast<uint32_t>(dei) << 12);
+        //#:- Write header back into pot.
+        pot_t::write(NH_RAW(&header), EXTENSION_802_1Q_SIZE,
+                                      EXTENSION_802_1Q_START); }
+
+      bool ethernet_t::extension_802_1q_dei() const throw (exception_t)
+      { //#:- Check if extension is enabled.
+        if (!extension_802_1q_m)
+         throw (RuntimeError("NH::Protocols::Raw", "802.1Q extension is not enabled."));
+        //#:- Read 802.1Q extension header.
+        std::unique_ptr<uint8_t[]> extension_header(pot_t::read(EXTENSION_802_1Q_SIZE,
+                                                                EXTENSION_802_1Q_START));
+        //#:- Interpret it as uint32_t and extract 1-bit field..
+        uint32_t header = (*TO_UINT32_T(extension_header.get()));
+        uint8_t dei = (header >> 12) & NH_BINARY(00000000000000000000000000000001);
+        return (dei ? true : false); }
+
+      void ethernet_t::extension_802_1q_vdi(uint16_t _vdi_a) throw (exception_t)
+      { //#:- Check if extension is enabled.
+        if (!extension_802_1q_m)
+         throw (RuntimeError("NH::Protocols::Raw", "802.1Q extension is not enabled."));
+        //#:- Read 802.1Q extension header.
+        std::unique_ptr<uint8_t[]> extension_header(pot_t::read(EXTENSION_802_1Q_SIZE,
+                                                                EXTENSION_802_1Q_START));
+        //#:- Interpret it as uint32_t.
+        uint32_t header = (*TO_UINT32_T(extension_header.get()));
+        header |= (static_cast<uint32_t>(_vdi_a) & NH_BINARY(00000000000000000000111111111111));
+        //#:- Write header back into pot.``
+        pot_t::write(NH_RAW(&header), EXTENSION_802_1Q_SIZE,
+                                      EXTENSION_802_1Q_START); }
+
+      uint16_t ethernet_t::extension_802_1q_vdi() const throw (exception_t)
+      { //#:- Check if extension is enabled.
+        if (!extension_802_1q_m)
+         throw (RuntimeError("NH::Protocols::Raw", "802.1Q extension is not enabled."));
+        //#:- Read 802.1Q extension header.
+        std::unique_ptr<uint8_t[]> extension_header(pot_t::read(EXTENSION_802_1Q_SIZE,
+                                                                EXTENSION_802_1Q_START));
+        //#:- Interpret it as uint32_t.
+        uint32_t header = (*TO_UINT32_T(extension_header.get()));
+        return (header & NH_BINARY(00000000000000000000111111111111)); }
 
       bool ethernet_t::is_mac(const std::string& _mac_a) noexcept
       { //#:- Acceptable notations are: 00-11-22-33-44-55-66 or

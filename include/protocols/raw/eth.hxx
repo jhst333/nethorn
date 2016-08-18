@@ -27,8 +27,10 @@ namespace NH
          #define MAC_SOURCE_START 0x06
          #define MAC_SOURCE_END 0x0B
          #define MAC_LENGTH 0x06
-         #define TAG_START 0x0C
-         #define TAG_SIZE 0x0C
+         #define EXTENSION_802_1Q_START 0x0C
+         #define EXTENSION_802_1Q_SIZE 0x04
+         #define EXTENSION_802_1Q_END 0x10
+         #define EXTENSION_802_1Q_PCP_START 0x0E
          #define ETHERTYPE_START 0x0C
          #define ETHERTYPE_SIZE 0x02
          //#:- Construction
@@ -106,6 +108,34 @@ namespace NH
           * \throw Nothing.
           * \return True if 802.1Q extension is activated, False otherwise. */
          bool extension_802_1q() const noexcept;
+         /*! \brief Sets priority code point (PCP) field.
+          *
+          * Sets a 3-bit field which refers to the IEEE 802.1p class of
+          * service and maps to the frame priority level.
+          * Values in order of priority are: 1 (background), 0 (best effort),
+          * 2 (excellent effort), 3 (critical application), ..., 7 (network control).
+          * These values can be used to prioritize different classes of traffic
+          * (voice, video, data, etc.).
+          * \link https://en.wikipedia.org/wiki/IEEE_802.1Q#Multiple_VLAN_Registration_Protocol
+          * \throw Nothing.
+          * \return Nothing. */
+         void extension_802_1q_pcp(uint8_t _pcp_a) throw (exception_t);
+         /*! \brief Gets priority code point (PCP) field.
+          *
+          * Gets a 3-bit field which refers to the IEEE 802.1p class of
+          * service and maps to the frame priority level.
+          * Values in order of priority are: 1 (background), 0 (best effort),
+          * 2 (excellent effort), 3 (critical application), ..., 7 (network control).
+          * These values can be used to prioritize different classes of traffic
+          * (voice, video, data, etc.).
+          * \link https://en.wikipedia.org/wiki/IEEE_802.1Q#Multiple_VLAN_Registration_Protocol
+          * \throw Nothing.
+          * \return Priority code point. */
+         uint8_t extension_802_1q_pcp() const throw (exception_t);
+         void extension_802_1q_dei(bool _dei_a) throw (exception_t);
+         bool extension_802_1q_dei() const throw (exception_t);
+         void extension_802_1q_vdi(uint16_t _vdi_a) throw (exception_t);
+         uint16_t extension_802_1q_vdi() const throw (exception_t);
          //#:- Validation
          static bool is_mac(const std::string& _mac_a) noexcept;
          template <typename... layers_t>

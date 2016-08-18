@@ -2,14 +2,18 @@
 #define _NH_HELPERS_HXX_
 
 #include <cstdint>
+#include <cstdio>
 
 #include "exception.hxx"
-
-#define NH_RAW reinterpret_cast<const uint8_t*>
 
 namespace NH
 { namespace Helpers
   {
+    #define NH_RAW reinterpret_cast<const uint8_t*>
+    #define TO_UINT32_T reinterpret_cast<uint32_t*>
+    #define TO_UINT16_T reinterpret_cast<uint16_t*>
+    #define TO_UINT8_T reinterpret_cast<uint8_t*>
+    #define NH_BINARY(_n) strtol(#_n, 0, 2)
     #ifdef NH_TEST
      /*! \brief Compares 2 memory segments.
       *
