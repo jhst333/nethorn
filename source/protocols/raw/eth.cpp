@@ -1,7 +1,5 @@
 #include "protocols/raw/eth.hxx"
 
-#include <iostream>
-
 namespace NH
 { namespace Protocols
   { namespace Raw

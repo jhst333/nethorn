@@ -2,6 +2,7 @@
 #define _NH_POT_HXX_
 
 #include <cstdint>
+#include <cstring>
 
 #include "exception.hxx"
 

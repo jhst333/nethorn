@@ -1,5 +1,3 @@
-#include <cstring>
-
 #include "protocols/raw/pot.hxx"
 
 namespace NH
